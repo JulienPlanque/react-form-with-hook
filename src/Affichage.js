@@ -2,10 +2,16 @@ import React, { useState } from 'react'
 import Form from './Form'
 
 export default function Affichage() {
-    const [todos, setTodos] = useState([1, 2, 3])
+    const [todos, setTodos] = useState([])
 
     const addTodo = text => {
         const newTodos = [...todos, text]
+        setTodos(newTodos)
+    }
+
+    const removeTodo = (index) => {
+        const newTodos = todos.slice()
+        newTodos.splice(index, 1)
         setTodos(newTodos)
     }
 
@@ -15,7 +21,7 @@ export default function Affichage() {
             <ul>
                 {todos.map((item, index) => {
                     return (
-                        <li key={index}>{item}</li>
+                        <li key={index} onClick={() => removeTodo(index)}>{item}</li>
                     )
                 }
                 )}
